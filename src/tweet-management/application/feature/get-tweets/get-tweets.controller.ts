@@ -1,7 +1,5 @@
 import { Elysia } from 'elysia'
-import { cqrs } from 'elysia-cqrs'
 import { GetTweetsQuery } from './get-tweets.query'
-import { GetTweetsQueryHandler } from './get-tweets.query-handler'
 
 interface QueryParams {
   query: {
@@ -9,19 +7,15 @@ interface QueryParams {
   }
 
   queryMediator: {
-    send: (query: GetTweetsQuery) => Promise<any>
+    send: (query: GetTweetsQuery) => Promise<string>
   }
 }
 
-export const GetTweetController = new Elysia({ prefix: '/tweets' })
-  .use(
-    cqrs({
-      queries: [[GetTweetsQuery, new GetTweetsQueryHandler()]]
-    })
-  )
-  .get('/get-all', async ({ query: { name }, queryMediator }: QueryParams) => {
-    const nQuery = new GetTweetsQuery(name)
+export const GetTweetController = new Elysia({ prefix: '/tweets' }).get(
+  '/get-all',
+  async ({ query: { name }, queryMediator }: QueryParams) => {
+    const getQuery = new GetTweetsQuery(name)
 
-    return queryMediator.send(nQuery)
-  })
-  .listen(3000)
+    return queryMediator.send(getQuery)
+  }
+)
