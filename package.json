@@ -23,6 +23,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "elysia": "^1.1.23"
+    "elysia": "^1.1.23",
+    "elysia-cqrs": "^1.0.2"
   }
 }
