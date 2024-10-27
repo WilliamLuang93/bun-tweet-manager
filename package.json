@@ -1,0 +1,28 @@
+{
+  "name": "bun-tweet-manager",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "lint": "bunx eslint ./src",
+    "lint:fix": "bunx eslint ./src --fix --quiet",
+    "fix": "bun run format && bun run lint:fix",
+    "format": "bunx prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:check": "bunx prettier --check \"src/**/*.{ts,tsx}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "bun-types": "latest",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "elysia": "^1.1.23"
+  }
+}
